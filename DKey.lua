@@ -1,1 +1,1 @@
-return "oldkey"
+return "cat"
