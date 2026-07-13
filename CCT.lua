@@ -200,6 +200,23 @@ Visuals:CreateToggle({
     end
 })
 
+workspace.DescendantAdded:Connect(function(obj)
+
+    if not C4HighlightEnabled then
+        return
+    end
+
+    if obj.Name == "FL"
+    and obj:IsA("BasePart")
+    and obj.Parent
+    and obj.Parent:IsA("Model") then
+
+        AddC4Highlight(obj)
+
+    end
+
+end)
+
 local MolotovHighlightEnabled = false
 local MolotovHighlights = {}
 
@@ -488,3 +505,63 @@ workspace.DescendantAdded:Connect(function(obj)
 
 end)
 
+Visuals:CreateSection("------------------------------------------ Settings Section.")
+
+local HeldItemHighlightEnabled = false
+local HeldItemHighlights = {}
+
+local function AddToolHighlight(tool)
+    if not tool:IsA("Tool") then return end
+    if HeldItemHighlights[tool] then return end
+
+    local highlight = Instance.new("Highlight")
+    highlight.Parent = tool
+    highlight.Adornee = tool
+
+    HeldItemHighlights[tool] = highlight
+end
+
+local function RemoveToolHighlights()
+    for tool, highlight in pairs(HeldItemHighlights) do
+        if highlight then
+            highlight:Destroy()
+        end
+    end
+
+    table.clear(HeldItemHighlights)
+end
+
+local function ScanTools()
+    for _, obj in ipairs(game:GetDescendants()) do
+        if obj:IsA("Tool") then
+            AddToolHighlight(obj)
+        end
+    end
+end
+
+Visuals:CreateToggle({
+    Name = "Held Items Highlight",
+    CurrentValue = false,
+
+    Callback = function(Value)
+        HeldItemHighlightEnabled = Value
+
+        if Value then
+            ScanTools()
+        else
+            RemoveToolHighlights()
+        end
+    end
+})
+
+game.DescendantAdded:Connect(function(obj)
+
+    if not HeldItemHighlightEnabled then
+        return
+    end
+
+    if obj:IsA("Tool") then
+        AddToolHighlight(obj)
+    end
+
+end)
