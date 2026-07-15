@@ -69,11 +69,16 @@ ImageLabel.Image = "rbxassetid://100574547642033"
 ImageLabel.ImageColor3 = Color3.fromRGB(255,255,255)
 ImageLabel.ScaleType = Enum.ScaleType.Stretch
 
-local MainFrame = ImageButton.Parent
-    :WaitForChild("Main")
+local RayfieldParent = ImageButton.Parent
+
+local MainFrame = RayfieldParent:WaitForChild("Main")
+local DragFrame = RayfieldParent:WaitForChild("Drag")
 
 ImageButton.MouseButton1Click:Connect(function()
-    MainFrame.Visible = not MainFrame.Visible
+    local NewState = not MainFrame.Visible
+
+    MainFrame.Visible = NewState
+    DragFrame.Visible = NewState
 end)
 
 local Hide = ImageButton.Parent
