@@ -1,178 +1,173 @@
 local CoreGui = game:GetService("CoreGui")
 
-
 local Rayfield
 
 for _, child in ipairs(CoreGui:GetChildren()) do
-    local found = child:FindFirstChild("Rayfield")
-    
-    if found then
-        Rayfield = found
-        break
-    end
+local found = child:FindFirstChild("Rayfield")
+
+if found then  
+    Rayfield = found  
+    break  
+end
+
 end
 
 if not Rayfield then
-    error("Rayfield not found in CoreGui")
+error("Rayfield not found in CoreGui")
 end
 
 -- Tab Customization System
 
 local TabGradients = {
-    Main = {
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(238,119,116)),
-        ColorSequenceKeypoint.new(0.4, Color3.fromRGB(242,84,67)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(242,84,67))
-    },
+Main = {
+ColorSequenceKeypoint.new(0, Color3.fromRGB(238,119,116)),
+ColorSequenceKeypoint.new(0.4, Color3.fromRGB(242,84,67)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(242,84,67))
+},
 
-    Navigation = {
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(255,181,93)),
-        ColorSequenceKeypoint.new(0.4, Color3.fromRGB(242,157,65)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(242,157,65))
-    },
+Navigation = {  
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255,181,93)),  
+    ColorSequenceKeypoint.new(0.4, Color3.fromRGB(242,157,65)),  
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(242,157,65))  
+},  
 
-    Visuals = {
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(255,240,150)),
-        ColorSequenceKeypoint.new(0.4, Color3.fromRGB(255,204,69)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(255,204,69))
-    },
+Visuals = {  
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255,240,150)),  
+    ColorSequenceKeypoint.new(0.4, Color3.fromRGB(255,204,69)),  
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(255,204,69))  
+},  
 
-    ["Local Player"] = {
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(183,202,96)),
-        ColorSequenceKeypoint.new(0.4, Color3.fromRGB(95,200,93)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(95,200,93))
-    },
+["Local Player"] = {  
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(183,202,96)),  
+    ColorSequenceKeypoint.new(0.4, Color3.fromRGB(95,200,93)),  
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(95,200,93))  
+},  
 
-    Automation = {
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(135,164,220)),
-        ColorSequenceKeypoint.new(0.4, Color3.fromRGB(62,130,204)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(62,130,204))
-    },
+Automation = {  
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(135,164,220)),  
+    ColorSequenceKeypoint.new(0.4, Color3.fromRGB(62,130,204)),  
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(62,130,204))  
+},  
 
-    Fun = {
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(255,160,190)),
-        ColorSequenceKeypoint.new(0.4, Color3.fromRGB(250,115,230)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(250,115,230))
-    }
+Fun = {  
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255,160,190)),  
+    ColorSequenceKeypoint.new(0.4, Color3.fromRGB(250,115,230)),  
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(250,115,230))  
 }
 
+}
 
 local function SetupTab(Tab)
 
-    if not Tab:IsA("Frame") then
-        return
-    end
+if not Tab:IsA("Frame") then  
+    return  
+end  
 
 
-    -- Force colors automatically
+-- Force colors automatically  
 
-    Tab.BackgroundColor3 = Color3.fromRGB(255,255,255)
-    Tab.BackgroundTransparency = 0
-
-
-    local Title = Tab:FindFirstChildWhichIsA("TextLabel", true)
-
-    if Title then
-
-        Title.TextColor3 = Color3.fromRGB(255,255,255)
+Tab.BackgroundColor3 = Color3.fromRGB(255,255,255)  
+Tab.BackgroundTransparency = 0  
 
 
-        local Stroke = Title:FindFirstChild("UIStroke")
+local Title = Tab:FindFirstChildWhichIsA("TextLabel", true)  
 
-        if not Stroke then
-            Stroke = Instance.new("UIStroke")
-            Stroke.Parent = Title
-        end
+if Title then  
 
-
-        Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-        Stroke.Thickness = 2
-        Stroke.Color = Color3.fromRGB(0,0,0)
+    Title.TextColor3 = Color3.fromRGB(255,255,255)  
 
 
-        Title:GetPropertyChangedSignal("TextColor3"):Connect(function()
-            Title.TextColor3 = Color3.fromRGB(255,255,255)
-        end)
+    local Stroke = Title:FindFirstChild("UIStroke")  
 
-    end
-
-
-
-    local Image = Tab:FindFirstChildWhichIsA("ImageLabel", true)
-
-    if Image then
-
-        Image.ImageColor3 = Color3.fromRGB(255,255,255)
+    if not Stroke then  
+        Stroke = Instance.new("UIStroke")  
+        Stroke.Parent = Title  
+    end  
 
 
-        Image:GetPropertyChangedSignal("ImageColor3"):Connect(function()
-            Image.ImageColor3 = Color3.fromRGB(255,255,255)
-        end)
+    Stroke.LineJoinMode = Enum.LineJoinMode.Miter  
+    Stroke.Thickness = 2  
+    Stroke.Color = Color3.fromRGB(0,0,0)  
 
-    end
+
+    Title:GetPropertyChangedSignal("TextColor3"):Connect(function()  
+        Title.TextColor3 = Color3.fromRGB(255,255,255)  
+    end)  
+
+end  
 
 
 
-    Tab:GetPropertyChangedSignal("BackgroundColor3"):Connect(function()
-        Tab.BackgroundColor3 = Color3.fromRGB(255,255,255)
-    end)
+local Image = Tab:FindFirstChildWhichIsA("ImageLabel", true)  
+
+if Image then  
+
+    Image.ImageColor3 = Color3.fromRGB(255,255,255)  
 
 
-    Tab:GetPropertyChangedSignal("BackgroundTransparency"):Connect(function()
-        Tab.BackgroundTransparency = 0
-    end)
+    Image:GetPropertyChangedSignal("ImageColor3"):Connect(function()  
+        Image.ImageColor3 = Color3.fromRGB(255,255,255)  
+    end)  
+
+end  
 
 
 
-    -- Gradient
-
-    local OldGradient = Tab:FindFirstChild("NoxiusGradient")
-
-    if OldGradient then
-        OldGradient:Destroy()
-    end
+Tab:GetPropertyChangedSignal("BackgroundColor3"):Connect(function()  
+    Tab.BackgroundColor3 = Color3.fromRGB(255,255,255)  
+end)  
 
 
-    local Colors = TabGradients[Tab.Name]
+Tab:GetPropertyChangedSignal("BackgroundTransparency"):Connect(function()  
+    Tab.BackgroundTransparency = 0  
+end)  
 
-    if Colors then
 
-        local Gradient = Instance.new("UIGradient")
 
-        Gradient.Name = "NoxiusGradient"
-        Gradient.Offset = Vector2.new(0,0)
-        Gradient.Rotation = 90
-        Gradient.Transparency = NumberSequence.new(0)
-        Gradient.Color = ColorSequence.new(Colors)
+-- Gradient  
 
-        Gradient.Parent = Tab
+local OldGradient = Tab:FindFirstChild("NoxiusGradient")  
 
-    end
+if OldGradient then  
+    OldGradient:Destroy()  
+end  
+
+
+local Colors = TabGradients[Tab.Name]  
+
+if Colors then  
+
+    local Gradient = Instance.new("UIGradient")  
+
+    Gradient.Name = "NoxiusGradient"  
+    Gradient.Offset = Vector2.new(0,0)  
+    Gradient.Rotation = 90  
+    Gradient.Transparency = NumberSequence.new(0)  
+    Gradient.Color = ColorSequence.new(Colors)  
+
+    Gradient.Parent = Tab  
 
 end
 
-
+end
 
 local TabList = Rayfield:WaitForChild("Main"):WaitForChild("TabList")
 
-
 for _, Tab in ipairs(TabList:GetChildren()) do
-    SetupTab(Tab)
+SetupTab(Tab)
 end
-
 
 TabList.ChildAdded:Connect(function(Tab)
 
-    task.wait()
+task.wait()  
 
-    SetupTab(Tab)
+SetupTab(Tab)
 
 end)
 
 local ImageButton = Instance.new("ImageButton")
 ImageButton.Name = "ImageButton"
 ImageButton.Parent = Rayfield
-
 
 ImageButton.Active = true
 ImageButton.Draggable = true
@@ -213,8 +208,6 @@ BlackStroke.Transparency = 0
 BlackStroke.Parent = ImageButton
 BlackStroke.Enabled = true
 
- 
-
 -- UI scale
 local Scale = Instance.new("UIScale")
 Scale.Scale = 0.5
@@ -240,20 +233,21 @@ local MainFrame = RayfieldParent:WaitForChild("Main")
 local DragFrame = RayfieldParent:WaitForChild("Drag")
 
 ImageButton.MouseButton1Click:Connect(function()
-    local NewState = not MainFrame.Visible
+local NewState = not MainFrame.Visible
 
-    MainFrame.Visible = NewState
-    DragFrame.Visible = NewState
+MainFrame.Visible = NewState  
+DragFrame.Visible = NewState
+
 end)
 
 local Topbar = ImageButton.Parent
-    :WaitForChild("Main")
-    :WaitForChild("Topbar")
+:WaitForChild("Main")
+:WaitForChild("Topbar")
 
 local Hide = Topbar:FindFirstChild("Hide")
 
 if Hide then
-    Hide:Destroy()
+Hide:Destroy()
 end
 
 local NoxiusToggleOutline = Instance.new("ImageLabel")
@@ -285,8 +279,8 @@ OutlineStroke.Parent = NoxiusToggleOutline
 local StrokeGradient = Instance.new("UIGradient")
 StrokeGradient.Rotation = 90
 StrokeGradient.Color = ColorSequence.new({
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(189,189,189)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(22,22,22))
+ColorSequenceKeypoint.new(0, Color3.fromRGB(189,189,189)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(22,22,22))
 })
 StrokeGradient.Parent = OutlineStroke
 
@@ -326,7 +320,6 @@ HoverSound.RollOffMode = Enum.RollOffMode.InverseTapered
 -- Routing
 HoverSound.SoundGroup = nil
 
-
 -- Click Sound
 local ClickSound = Instance.new("Sound")
 ClickSound.Name = "Click"
@@ -363,22 +356,22 @@ ClickSound.RollOffMode = Enum.RollOffMode.InverseTapered
 -- Routing
 ClickSound.SoundGroup = nil
 
-
 -- Events
 local function ConnectButton(Button)
-	if Button:GetAttribute("SoundsApplied") then
-		return
-	end
+if Button:GetAttribute("NoxiusConnected") then
+return
+end
 
-	Button:SetAttribute("SoundsApplied", true)
+Button:SetAttribute("NoxiusConnected", true)  
 
-	Button.MouseEnter:Connect(function()
-		HoverSound:Play()
-	end)
+Button.MouseEnter:Connect(function()  
+	HoverSound:Play()  
+end)  
 
-	Button.MouseButton1Click:Connect(function()
-		ClickSound:Play()
-	end)
+Button.MouseButton1Click:Connect(function()  
+	ClickSound:Play()  
+end)
+
 end
 
 for _, Object in ipairs(Rayfield:GetDescendants()) do
@@ -399,4 +392,4 @@ for _, Object in ipairs(Rayfield:GetDescendants()) do
 	if Object:IsA("ImageButton") or Object:IsA("TextButton") then
 		ConnectButton(Object)
 	end
-end
+end)
