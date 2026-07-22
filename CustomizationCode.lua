@@ -480,7 +480,7 @@ ClickSound.Archivable = true
 ClickSound.PlayOnRemove = false
 
 -- Asset
-ClickSound.SoundId = "rbxassetid://552900451"
+ClickSound.SoundId = "rbxassetid://4612384434"
 
 -- Playback
 ClickSound.Looped = false
