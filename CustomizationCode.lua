@@ -431,7 +431,7 @@ StrokeGradient.Parent = OutlineStroke
 
 -- Hover Sound
 local HoverSound = Instance.new("Sound")
-HoverSound.Name = "TinyTick"
+HoverSound.Name = "bubble"
 HoverSound.Parent = Rayfield
 
 -- Data
@@ -444,7 +444,7 @@ HoverSound.Archivable = true
 HoverSound.PlayOnRemove = false
 
 -- Asset
-HoverSound.SoundId = "rbxassetid://147982968"
+HoverSound.SoundId = "rbxassetid://103029640262152"
 
 -- Playback
 HoverSound.Looped = false
@@ -467,7 +467,7 @@ HoverSound.SoundGroup = nil
 
 -- Click Sound
 local ClickSound = Instance.new("Sound")
-ClickSound.Name = "Click"
+ClickSound.Name = "mission"
 ClickSound.Parent = Rayfield
 
 -- Data
