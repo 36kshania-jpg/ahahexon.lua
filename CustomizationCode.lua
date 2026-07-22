@@ -433,6 +433,7 @@ StrokeGradient.Parent = OutlineStroke
 local HoverSound = Instance.new("Sound")
 HoverSound.Name = "bubble"
 HoverSound.Parent = Rayfield
+HoverSound.Pitch = 0.8
 
 -- Data
 HoverSound.EmitterSize = 10
@@ -449,13 +450,13 @@ HoverSound.SoundId = "rbxassetid://103029640262152"
 -- Playback
 HoverSound.Looped = false
 HoverSound.PlaybackRegionsEnabled = false
-HoverSound.PlaybackSpeed = 2
+HoverSound.PlaybackSpeed = 0.8
 HoverSound.TimePosition = 0.1
-HoverSound.Volume = 0.150
+HoverSound.Volume = 1
 
 -- Regions
 HoverSound.LoopRegion = NumberRange.new(0, 60000)
-HoverSound.PlaybackRegion = NumberRange.new(0, 60000)
+HoverSound.PlaybackRegion = NumberRange.new(0, 0.5)
 
 -- Emitter
 HoverSound.RollOffMaxDistance = 10000
@@ -467,7 +468,7 @@ HoverSound.SoundGroup = nil
 
 -- Click Sound
 local ClickSound = Instance.new("Sound")
-ClickSound.Name = "mission"
+ClickSound.Name = "click"
 ClickSound.Parent = Rayfield
 
 -- Data
@@ -480,7 +481,7 @@ ClickSound.Archivable = true
 ClickSound.PlayOnRemove = false
 
 -- Asset
-ClickSound.SoundId = "rbxassetid://4612384434"
+ClickSound.SoundId = "rbxassetid://6042053626"
 
 -- Playback
 ClickSound.Looped = false
@@ -496,7 +497,7 @@ ClickSound.PlaybackRegion = NumberRange.new(0, 60000)
 -- Emitter
 ClickSound.RollOffMaxDistance = 10000
 ClickSound.RollOffMinDistance = 10
-ClickSound.RollOffMode = Enum.RollOffMode.InverseTapered
+ClickSound.RollOffMode = Enum.RollOffMode.Inverse
 
 -- Routing
 ClickSound.SoundGroup = nil
