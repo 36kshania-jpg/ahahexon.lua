@@ -2011,7 +2011,6 @@ Visuals:CreateToggle({
 
 Visuals:CreateLabel("Toggles ESP for Patients.")
 
-
 local SecurityCameraESPEnabled = false
 local SecurityCameraESPObjects = {}
 
@@ -2075,7 +2074,6 @@ local function AddCameraESP(camera)
     Name.TextScaled = false
     Name.TextSize = 18
     Name.Font = Enum.Font.FredokaOne
-    Name.TextColor3 = Color3.fromRGB(255,255,255)
     Name.TextStrokeTransparency = 0
     Name.LayoutOrder = 1
     Name.Text = camera.Name
@@ -2105,23 +2103,28 @@ local function AddCameraESP(camera)
     StatusStroke.Parent = Status
 
 
+
     local function UpdateStatus()
-		
-if mainLook:FindFirstChild("PP") then
 
-    Status.Text = "Broken"
-    Status.TextColor3 = BrokenColor
-    Name.TextColor3 = BrokenColor
-    Highlight.FillColor = BrokenColor
+        if mainLook:FindFirstChild("PP") then
 
-else
+            Status.Text = "Broken"
 
-    Status.Text = "Not Broken"
-    Status.TextColor3 = NotBrokenColor
-    Name.TextColor3 = NotBrokenColor
-    Highlight.FillColor = NotBrokenColor
+            Status.TextColor3 = BrokenColor
+            Name.TextColor3 = BrokenColor
+            Highlight.FillColor = BrokenColor
 
-		end
+        else
+
+            Status.Text = "Not Broken"
+
+            Status.TextColor3 = NotBrokenColor
+            Name.TextColor3 = NotBrokenColor
+            Highlight.FillColor = NotBrokenColor
+
+        end
+
+    end
 
 
     UpdateStatus()
@@ -2209,3 +2212,4 @@ Visuals:CreateToggle({
 
 
 Visuals:CreateLabel("Toggles ESP for security cameras.")
+    
